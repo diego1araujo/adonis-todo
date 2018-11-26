@@ -23,23 +23,6 @@ class TodoController {
     }
 
     async store ({ request, session, response }) {
-        const rules = {
-            addTodo: 'required|min:3',
-        }
-
-        const messages = {
-            'addTodo.required': 'The add todo field is required',
-            'addTodo.min': 'The add todo field requires at least 3 characters',
-        }
-
-        const validation = await validate(request.all(), rules, messages)
-
-        if (validation.fails()) {
-            session.withErrors(validation.messages()).flashAll()
-
-            return response.redirect('back')
-        }
-
         const todo = await Todo.create({
             title: request.input('addTodo'),
         });
