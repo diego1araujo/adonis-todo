@@ -19,9 +19,6 @@ class TodoController {
         });
     }
 
-    async create ({ request, response, view }) {
-    }
-
     async store ({ request, session, response }) {
         const todo = await Todo.create({
             title: request.input('addTodo'),
@@ -30,9 +27,6 @@ class TodoController {
         session.flash({ successMessage: 'Todo was added!' });
 
         return response.redirect('back');
-    }
-
-    async show ({ params, request, response, view }) {
     }
 
     async edit ({ params, request, response, view }) {
